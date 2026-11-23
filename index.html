@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rwanda Ev Station Finder</title>
+
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js" defer></script>
+        <script src="settings.js" defer></script>
+        <script type="module" src="auth.js"></script>
+    </head>
+    <body>
+        <header class="site-header">
+            <div class="brand">
+                <p class="eyebrow">RWANDA EV CHARGING</p>
+                <h1>Rwanda EV Station Finder</h1>
+            </div>
+
+            <div class="header-controls">
+                <nav class="tabs" aria-label="App sections">
+                    <button class="tab-button active" data-tab="home" type="button">Home</button>
+                    <button class="tab-button" data-tab="account" id="accountTab" type="button">Sign in</button>
+                    <button class="tab-button" data-tab="settings" id="settingsTab" type="button" disabled>
+                        Settings
+                    </button>
+                </nav>
+                <p id="authStatus" class="auth-status">Checking sign-in...</p>
+            </div>
+        </header>
+        
+        <main class="container">
+            <section class="tab-panel active" id="home">
+                <p class="eyebrow">CHARGE WITH CONFIDENCE</p>
+                <h2>Find charging stations in Rwanda</h2>
+                <p>Search by town or use your current location to view Google Maps results.</p>
+
+                <h3>How it Works</h3>
+                <p>Sign in, search for a place, and explore nearby charging locations on the map.</p>
+
+                <button class="button primary" id="findStationsButton" type="button">
+                    Find charging stations
+                </button>
+            </section>
+
+            <section class="tab-panel" id="stations" hidden>
+                <p class="eyebrow">STATION FINDER</p>
+                <h2>Search charging stations</h2>
+
+                <form class="search-form" id="searchForm">
+                    <label class="sr-only" for="locationInput">Town or city in Rwanda</label>
+                    <input id="locationInput" type="search"
+                        placeholder="Enter a town, for example Kigali" required>
+                    <button class="button secondary" id="locationButton" type="Button">
+                        Use my location
+                    </button>
+                    <button class="button primary" type="submit">Search</button>
+                </form>
+
+                <p id="mapMessage" class="status-message" aria-live="polite">
+                    Search for a town to show up map results.
+                </p>
+
+                <section class="card">
+                    <h3>Charging locations</h3>
+                    <iframe id="mapFrame" title="Google Maps charging station results"
+                      loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
+                      allowfullscreen hidden></iframe>
+                </section>
+            </section>
+
+            <section class="tab-panel" id="account" hidden>
+                <p class="eyebrown">YOUR ACCOUNT</p>
+                <h2>Sign in</h2>
+
+                <form class="account-form" id="accountForm">
+                    <label for="email">Email</label>
+                    <input id="email" type="email" autocomplete="email" required>
+
+                    <label for="password">Password</label>
+                    <input id="password" type="password"
+                       autocomplete="current-password" minlength="6"  required>
+                    <div class="form-actions">
+                        <button class="button primary" type="submit">Sign in</button>
+                        <button class="button secondary" id="createAccount" type="button">
+                            Create account
+                        </button>
+                    </div>
+                </form>
+
+                <div id="signedInPanel" class="card" hidden>
+                    <p id="signedInText"></p>
+                    <button class="button secondary" id="signOut" type="button">Sign out</button>
+                </div>
+
+                <P id="accountMessage" class="status-message" aria-live="polite">
+                    Sign in to use the station finder.
+                </P>
+            </section>
+
+            <section class="tab-panel" id="settings" hidden>
+                <p class="eyebrow">PREFERENCES</p>
+                <h2>Settings</h2>
+                <label for="themeSelect">Theme</label>
+                <select id="themeSelect">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                </select>
+            </section>
+        </main>
+    </body>
+</html>
