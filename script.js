@@ -71,6 +71,6 @@ $("#locationButton").addEventListener("click", () => {
             $("#locationInput").value = "Your current location";
             showMap(lastPlace);
         },
-        () => { $("#mapMessage").textContent = "Location permission was not granted. Enter a town instead."; }
+        () => { $("#mapMessage").textContent = "Use my location needs HTTPS or Localhost . Search by town instead."; }
     );
 });
