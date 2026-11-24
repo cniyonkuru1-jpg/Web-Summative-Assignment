@@ -4,7 +4,7 @@ A web app that helps electric vehicle drivers in Rwanda find charging stations. 
 
 - **Live app (via load balancer):** http://3.10.198.197
 - **Demo video (2 min):** TODO: paste link
-- **Repository**:     (https://github.com/cniyonkuru1-jpg/Web-Summative-Assignment.git)
+- **Repository:** https://github.com/cniyonkuru1-jpg/Web-Summative-Assignment
 
 ## Why this app
 
@@ -88,7 +88,6 @@ This is a browser security rule, not a bug in the code. Browsers only allow loca
 | Where the app is opened | Secure? | "Use my location" |
 |---|---|---|
 | `http://127.0.0.1:5500` (VS Code Live Server) | Yes | Works |
-| `http://localhost:8000` | Yes | Works |
 | `http://3.10.198.197` (load balancer) | No | Blocked |
 | `http://18.171.162.21`, `http://18.171.164.153` | No | Blocked |
 | `https://<domain>` with a certificate | Yes | Would work |
@@ -164,6 +163,8 @@ Infrastructure: [nginx](https://nginx.org/en/docs/). Thanks to the teams behind 
 
 ## Deployment
 
+**Run one of the below ip address**
+
 | Name | Role | IP |
 |---|---|---|
 | web-01 | Web server (nginx) | 18.171.162.21 |
@@ -222,7 +223,8 @@ sudo nginx -t && sudo systemctl reload nginx
 ```bash
 for i in $(seq 1 10); do
   curl -sI http://3.10.198.197 | grep -i x-served-by
-do
+done
+```
 
 **Result:** 10 requests tot the load balancer, answered by the two servers in turn:
 
@@ -252,7 +254,7 @@ x-served-by: 7368-web-02
 
 ## Challenges and how I solved them
 
-- **Firebase scripts failing to load.** The console showed `ERR_NAME_NOT_RESOLVED` and a CORS-style message for the Firebase files from `gstatic.com`, even though the file opened in a separate tab. Heere what was the issue is that the API i was using is wrong i took the firebase API and wrote it in the MAPS API so it caused error but I was able to identify the error and I fixed it.
+- **Firebase scripts failing to load.** The console showed `ERR_NAME_NOT_RESOLVED` and a CORS-style message for the Firebase files from `gstatic.com`, even though the file opened in a separate tab. Here the issue was that the API i was using is wrong I took the firebase API and wrote it in the MAPS API so it caused error but I was able to identify the error and I fixed it.
 - **Geolocation on the servers.** Browsers block it on plain HTTP pages that are not `localhost`. It works locally; on the servers, town search is the way to search. A domain with HTTPS would fix it.
 - **Keeping the Maps key out of GitHub.** The key was first written in `script.js` and pushed by mistake. I moved it into a git-ignored `config.js`, deleted the exposed key and created a restricted replacement.
 - **Small typos that broke features** (a misspelled function name and a wrong `localStorage` key). I found them by reading the code and testing each feature.
