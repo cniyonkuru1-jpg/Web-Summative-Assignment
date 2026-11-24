@@ -163,7 +163,11 @@ Infrastructure: [nginx](https://nginx.org/en/docs/). Thanks to the teams behind 
 
 ## Deployment
 
+**Sign-in Credentials**: **Email**:c.niyonkuru1@alustudent.com **password**:kabandachris@256 or **create own account**
+
 **Run one of the below ip address**
+
+⚠️**To use the website you have to sign-in and if you don't have an account you have to create one**
 
 | Name | Role | IP |
 |---|---|---|
