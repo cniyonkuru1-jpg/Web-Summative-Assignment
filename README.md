@@ -268,4 +268,4 @@ x-served-by: 7368-web-02
 - "Use my location" needs HTTPS, so it only works locally until the site gets a domain and certificate.
 - Results come from Google Maps and are not stored, sorted or filtered by the app itself.
 
-**Demo Video**:https://www.youtube.com/watch?v=_12CbkwgFKQ
+**Demo Video**: https://www.youtube.com/watch?v=_12CbkwgFKQ
