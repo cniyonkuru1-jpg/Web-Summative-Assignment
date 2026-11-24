@@ -4,7 +4,7 @@ A web app that helps electric vehicle drivers in Rwanda find charging stations. 
 
 - **Live app (via load balancer):** http://3.10.198.197
 - **Demo video (2 min):** TODO: paste link
-- **Repository:** TODO: paste GitHub link
+- **Repository**:     (https://github.com/cniyonkuru1-jpg/Web-Summative-Assignment.git)
 
 ## Why this app
 
@@ -139,8 +139,8 @@ Infrastructure: [nginx](https://nginx.org/en/docs/). Thanks to the teams behind 
 
 1. **Clone the repo**
    ```bash
-   git clone TODO-your-repo-url
-   cd TODO-repo-folder
+   git clone https://github.com/cniyonkuru1-jpg/Web-Summative-Assignment.git
+   cd Web-Summative-Assignment
    ```
 2. **Get your keys**
    - *Maps:* in [Google Cloud Console](https://console.cloud.google.com/), enable the **Maps Embed API** and create an API key. Restrict it to that API and to your site addresses (HTTP referrers), for example `http://127.0.0.1:5500/*`, `http://3.10.198.197/*`, `http://18.171.162.21/*` and `http://18.171.164.153/*`.
@@ -185,24 +185,26 @@ If nginx is missing on a server: `sudo apt update && sudo apt install -y nginx`.
 
 ### 2. Configure the load balancer (lb-01)
 
-> TODO: replace with your real server block from `sudo nginx -T` if it differs.
 
 lb-01 runs nginx as a reverse proxy. It holds no app files; it only forwards requests:
 
 ```nginx
+# /etc/nginx/sites-enabled/ev-loadbalancer
 upstream ev_backends {
     server 18.171.162.21;     # web-01
     server 18.171.164.153;    # web-02
 }
 
 server {
-    listen 80;
+    listen 80 default_server;
+    server_name _;
 
     location / {
         proxy_pass http://ev_backends;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
     }
 }
 ```
@@ -220,12 +222,21 @@ sudo nginx -t && sudo systemctl reload nginx
 ```bash
 for i in $(seq 1 10); do
   curl -sI http://3.10.198.197 | grep -i x-served-by
-done
+do
+
+**Result:** 10 requests tot the load balancer, answered by the two servers in turn:
+
+x-served-by: 7368-web-01
+x-served-by: 7368-web-02
+x-served-by: 7368-web-01
+x-served-by: 7368-web-02
+x-served-by: 7368-web-01
+x-served-by: 7368-web-02
+x-served-by: 7368-web-01
+x-served-by: 7368-web-02
+x-served-by: 7368-web-01
+x-served-by: 7368-web-02
 ```
-
-Expected: the two server names alternate.
-
-> TODO: paste your own test output or a screenshot here.
 
 **Failover.** Run `sudo systemctl stop nginx` on web-01, reload the site (web-02 should still answer), then `sudo systemctl start nginx`.
 
@@ -241,7 +252,7 @@ Expected: the two server names alternate.
 
 ## Challenges and how I solved them
 
-- **Firebase scripts failing to load.** The console showed `ERR_NAME_NOT_RESOLVED` and a CORS-style message for the Firebase files from `gstatic.com`, even though the file opened in a separate tab. TODO: describe what fixed it.
+- **Firebase scripts failing to load.** The console showed `ERR_NAME_NOT_RESOLVED` and a CORS-style message for the Firebase files from `gstatic.com`, even though the file opened in a separate tab. Heere what was the issue is that the API i was using is wrong i took the firebase API and wrote it in the MAPS API so it caused error but I was able to identify the error and I fixed it.
 - **Geolocation on the servers.** Browsers block it on plain HTTP pages that are not `localhost`. It works locally; on the servers, town search is the way to search. A domain with HTTPS would fix it.
 - **Keeping the Maps key out of GitHub.** The key was first written in `script.js` and pushed by mistake. I moved it into a git-ignored `config.js`, deleted the exposed key and created a restricted replacement.
 - **Small typos that broke features** (a misspelled function name and a wrong `localStorage` key). I found them by reading the code and testing each feature.
@@ -251,12 +262,3 @@ Expected: the two server names alternate.
 
 - "Use my location" needs HTTPS, so it only works locally until the site gets a domain and certificate.
 - Results come from Google Maps and are not stored, sorted or filtered by the app itself.
-- Ideas: a filterable station list, response caching, HTTPS on the load balancer, Docker for deployment.
-
-## Author
-
-TODO: your name, course and cohort.
-
-## License
-
-TODO: add a license (for example MIT) or remove this section.
