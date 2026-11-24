@@ -1,4 +1,3 @@
-const MAPS_API_KEY = "AIzaSyB6hg04vN5_knmHjuI93TrY9Q_XttL8--E";
 const $ = (selector) => document.querySelector(selector);
 
 window.currentUser = null;

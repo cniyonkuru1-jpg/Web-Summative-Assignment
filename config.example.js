@@ -1,0 +1,1 @@
+window.App_CONFIG = { MAPS_API_KEY:"PASTE_YOUR_KEY_HERE"};
