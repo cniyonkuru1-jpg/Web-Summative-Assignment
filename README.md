@@ -2,8 +2,7 @@
 
 A web app that helps electric vehicle drivers in Rwanda find charging stations. Signed-in users search by town or use their current location, and see nearby stations on an interactive Google Map.
 
-- **Live app (via load balancer):** http://3.10.198.197
-- **Demo video (2 min):** TODO: paste link
+- **Live app (via load balancer):** http://3.10.198.19
 - **Repository:** https://github.com/cniyonkuru1-jpg/Web-Summative-Assignment
 
 ## Why this app
@@ -268,3 +267,5 @@ x-served-by: 7368-web-02
 
 - "Use my location" needs HTTPS, so it only works locally until the site gets a domain and certificate.
 - Results come from Google Maps and are not stored, sorted or filtered by the app itself.
+
+**Demo Video**:https://www.youtube.com/watch?v=_12CbkwgFKQ
