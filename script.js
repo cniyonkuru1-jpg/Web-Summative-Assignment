@@ -1,6 +1,7 @@
+const MAPS_API_KEY = (window.APP_CONFIG && window.APP_CONFIG.MAPS_API_KEY) || "PASTE_MISSING_CONFIG";
 const $ = (selector) => document.querySelector(selector);
 
-window.currentUser = null;
+window.currentUser = { email: "test"};
 window.pendingStationsRequest = false;
 let lastPlace = "";
 
@@ -10,7 +11,7 @@ function showMap(place) {
 
     if (MAPS_API_KEY.startsWith("PASTE_")) {
         frame.hidden = true;
-        message.textContent = "Add your Maps Embed API key at the top of script.js.";
+        message.textContent = "Maps key Missing: check that config.js loads before script.js in index.html";
         return;
     }
 
