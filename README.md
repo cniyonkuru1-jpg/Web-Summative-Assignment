@@ -200,5 +200,5 @@ Finally, I needed to keep both web servers identical. I solved this with one cop
 # API'S USED
 
 **Map's Api**: "https://console.firebase.google.com/project/ultra-cinema-515411-a9/overview"
-**Authentical Api**: "https://console.firebase.google.com/project/ultra-cinema-515411-a9/overview"
+**Authenticator Api**: "https://console.firebase.google.com/project/ultra-cinema-515411-a9/overview"
 
