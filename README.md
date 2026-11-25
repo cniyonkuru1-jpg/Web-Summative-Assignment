@@ -2,7 +2,7 @@
 
 A web app that helps electric vehicle drivers in Rwanda find charging stations. Signed-in users search by town or use their current location, and see nearby stations on an interactive Google Map.
 
-- **Live app (via load balancer):** 
+- **Live app (via load balancer):** http://3.10.198.197/
 - **Demo video:** https://www.youtube.com/watch?v=_12CbkwgFKQ
 - **Repository:** https://github.com/cniyonkuru1-jpg/Web-Summative-Assignment
 
